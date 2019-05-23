@@ -1,5 +1,6 @@
 package com.infotel.wssoap;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,7 +17,7 @@ import com.infotel.metier.Voiture;
 
 @Stateless
 @WebService
-public class PersonneSOAPService {
+public class ProduitSOAPService {
 	
 	@EJB
 	private DaoImpl dao;  // pas Idao, car les WS ne supportent pas les interfaces
@@ -24,11 +25,11 @@ public class PersonneSOAPService {
 //	no getter/setter needed
   
 	@WebMethod
-	public void ajouterProduitPe(
-			@WebParam(name="nom") String nom,
-			@WebParam(name="prenom") String prenom,
-			@WebParam(name="age") int age,
-			@WebParam(name="num") int numAdherent) {
+	public void addPerissable(
+			@WebParam(name="nomProduit") String nomProduit,
+			@WebParam(name="stock") int stock,
+			@WebParam(name="prix") double prix,
+			@WebParam(name="dateLimiteUtilisation") Date dateLimiteUtilisation) {
 		
 		Client c = new Client();
 		c.setNom(nom);
