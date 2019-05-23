@@ -31,7 +31,7 @@ public class ProduitSOAPService {
 			@WebParam(name="prix") double prix,
 			@WebParam(name="dateLimiteUtilisation") Date dateLimiteUtilisation) {
 		
-		Client c1 = new Client();
+		Client c = new Client();
 		c.setNom(nom);
 		c.setPrenom(prenom);
 		c.setAge(age);
