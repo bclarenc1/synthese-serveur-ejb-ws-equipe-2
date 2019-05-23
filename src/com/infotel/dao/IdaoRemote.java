@@ -5,9 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import com.infotel.metier.Magasin;
-import com.infotel.metier.Personne;
 import com.infotel.metier.Produit;
-import com.infotel.metier.Voiture;
 
 @Remote
 public interface IdaoRemote {
