@@ -7,7 +7,9 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.infotel.metier.Magasin;
 import com.infotel.metier.Personne;
+import com.infotel.metier.Produit;
 import com.infotel.metier.Voiture;
 
 @Singleton
@@ -20,68 +22,69 @@ public class DaoImpl implements IdaoRemote {
 	public DaoImpl() {}
 
 	@Override
-	public void addPersonne(Personne p) {
+	public void addProduit(Produit p) {
+		// TODO Auto-generated method stub
 		em.persist(p);
 	}
-	
+
 	@Override
-	public void removePersonne(long idPersonne) {
-		em.createQuery("delete from Personne p where p.id = :x").setParameter("x", idPersonne).executeUpdate();
+	public void removeProduit(long idProduit) {
+		// TODO Auto-generated method stub
+		em.createQuery("delete from Produit p where p.id = :x").setParameter("x", idProduit).executeUpdate();
 	}
-	
+
 	@Override
-	public Personne getPersonne(long idPersonne) {
-		return em.find(Personne.class, idPersonne);
+	public Produit getProduit(long idProduit) {
+		// TODO Auto-generated method stub
+		return em.find(Produit.class, idProduit);
 	}
-	
+
 	@Override
-	public Personne editPersonne(Personne p) {
+	public Produit editProduit(Produit p) {
+		// TODO Auto-generated method stub
 		em.persist(p);
 		return p;
 	}
+
+	@Override
+	public List<Produit> getAllProduits() {
+		// TODO Auto-generated method stub
+		return em.createQuery("select p from Produit p").getResultList();
+	}
+
+	@Override
+	public void addMagasin(Magasin m) {
+		// TODO Auto-generated method stub
+		em.persist(m);
+	}
+
+	@Override
+	public void removeMagasin(long idMagasin) {
+		// TODO Auto-generated method stub
+		em.createQuery("delete from Magasin m where m.id = :x").setParameter("x", idMagasin).executeUpdate();
+	}
 	
+
+	@Override
+	public Magasin getMagasin(long idMagasin) {
+		// TODO Auto-generated method stub
+		return em.find(Magasin.class, idMagasin);
+	}
+
+	@Override
+	public Magasin editMagasin(Magasin m) {
+		// TODO Auto-generated method stub
+		em.persist(m);
+		return m;
+	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Personne> getAllPersonnes() {
-		return em.createQuery("select p from Personne p").getResultList();
-	}
-	
-	//------------------------------------------------------------------------
-
-	@Override
-	public void addVoiture(Voiture v, long idPersonne) {
-		Personne p = em.find(Personne.class, idPersonne);
-		v.setPersonne(p);
-		em.persist(v);
+	public List<Voiture> getAllMagasins() {
+		// TODO Auto-generated method stub
+		return em.createQuery("select m from Magasin m").getResultList();
 	}
 
-	@Override
-	public void removeVoiture(long idVoiture) {
-		em.createQuery("delete from Voiture v where v.idVoiture = :x").setParameter("x", idVoiture).executeUpdate();
-	}
 
-	@Override
-	public Voiture getVoiture(long idVoiture) {
-		return em.find(Voiture.class, idVoiture);
-	}
-
-	@Override
-	public Voiture editVoiture(Voiture v) {
-		em.persist(v);
-		return v;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Voiture> getAllVoitures() {
-		return em.createQuery("select v from Voiture v").getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Voiture> getVoituresParPersonne(long idPersonne) {
-		return em.createQuery("select v from Voiture v where v.personne.id = :x").setParameter("x", idPersonne).getResultList();
-	}
 
 }
 

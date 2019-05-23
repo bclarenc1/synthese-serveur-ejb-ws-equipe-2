@@ -4,23 +4,23 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import com.infotel.metier.Magasin;
 import com.infotel.metier.Personne;
+import com.infotel.metier.Produit;
 import com.infotel.metier.Voiture;
 
 @Local
 public interface IdaoLocal {
 
-	public void addPersonne(Personne p);
-	public void removePersonne(long idPersonne);
-	public Personne getPersonne(long idPersonne);
-	public Personne editPersonne(Personne p);
-	public List<Personne> getAllPersonnes();
+	public void addProduit(Produit p);
+	public void removeProduit(long idProduit);
+	public Produit getProduit(long idProduit);
+	public Produit editProduit(Produit p);
+	public List<Produit> getAllProduits();
 	
-	public void addVoiture(Voiture v, long idPersonne);
-	public void removeVoiture(long idVoiture);
-	public Voiture getVoiture(long idVoiture);
-	public Voiture editVoiture(Voiture v);
-	public List<Voiture> getAllVoitures();
-	
-	public List<Voiture> getVoituresParPersonne(long idPersonne);
+	public void addMagasin(Magasin m);
+	public void removeMagasin(long idMagasin);
+	public Voiture getMagasin(long idMagasin);
+	public Voiture editMagasin(Magasin m);
+	public List<Voiture> getAllMagasins();
 }
