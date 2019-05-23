@@ -26,7 +26,6 @@ public abstract class Produit implements Serializable {
 	private int stock;
 	private double prix;
 	
-	
 	@ManyToOne
 	private Magasin magasin;
 	
