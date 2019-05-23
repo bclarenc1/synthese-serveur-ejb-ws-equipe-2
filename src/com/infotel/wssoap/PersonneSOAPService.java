@@ -24,7 +24,7 @@ public class PersonneSOAPService {
 //	no getter/setter needed
   
 	@WebMethod
-	public void ajouterClient(
+	public void ajouterProduitPe(
 			@WebParam(name="nom") String nom,
 			@WebParam(name="prenom") String prenom,
 			@WebParam(name="age") int age,
