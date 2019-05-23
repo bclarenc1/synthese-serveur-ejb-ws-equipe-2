@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({Perissable.class, NonPerissable.class})
 public abstract class Produit implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long idProduit;
 	private String nomProduit;
 	private int stock;
