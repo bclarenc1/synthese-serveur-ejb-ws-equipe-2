@@ -10,10 +10,10 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.infotel.dao.DaoImpl;
-import com.infotel.metier.Client;
-import com.infotel.metier.Personne;
-import com.infotel.metier.Prestataire;
-import com.infotel.metier.Voiture;
+import com.infotel.metier.Magasin;
+import com.infotel.metier.NonPerissable;
+import com.infotel.metier.Perissable;
+import com.infotel.metier.Produit;
 
 @Stateless
 @WebService
@@ -28,131 +28,121 @@ public class ProduitSOAPService {
 	public void addPerissable(
 			@WebParam(name="nomProduit") String nomProduit,
 			@WebParam(name="stock") int stock,
+			@WebParam(name="prix") double prix) {
+		
+		Date dateLimiteUtilisation = new Date();
+		Perissable pe = new Perissable();
+		pe.setNomProduit(nomProduit);
+		pe.setStock(stock);
+		pe.setPrix(prix);
+		pe.setDateLimiteUtilisation(dateLimiteUtilisation);
+		
+		dao.addProduit(pe);
+	}
+	
+	@WebMethod
+	public void addNPerissable(
+			@WebParam(name="nomProduit") String nomProduit,
+			@WebParam(name="stock") int stock,
 			@WebParam(name="prix") double prix,
-			@WebParam(name="dateLimiteUtilisation") Date dateLimiteUtilisation) {
+			@WebParam(name="modeDemploi") String modeDemploi) {
 		
-		Client c = new Client();
-		c.setNom(nom);
-		c.setPrenom(prenom);
-		c.setAge(age);
-		c.setNumAdherent(numAdherent);
+		NonPerissable np = new NonPerissable();
+		np.setNomProduit(nomProduit);
+		np.setStock(stock);
+		np.setPrix(prix);
+		np.setModeDemploi(modeDemploi);
 		
-		dao.addPersonne(c);
-	}
-	
-	@WebMethod
-	public void ajouterPrestataire(
-			@WebParam(name="nom") String nom,
-			@WebParam(name="prenom") String prenom,
-			@WebParam(name="age") int age,
-			@WebParam(name="adresse") String adresse) {
-		
-		Prestataire p = new Prestataire();
-		p.setNom(nom);
-		p.setPrenom(prenom);
-		p.setAge(age);
-		p.setAdresse(adresse);
-		
-		dao.addPersonne(p);
+		dao.addProduit(np);
 	}
 
 	@WebMethod
-	public void supprimerPersonne(@WebParam(name="idPersonne") long idPersonne) {
-		dao.removePersonne(idPersonne);
+	public void removeProduit(@WebParam(name="idProduit") long idProduit) {
+		dao.removeProduit(idProduit);
 	}
 
 	@WebMethod
-	public Personne getPersonne(@WebParam(name="idPersonne") long idPersonne) {
-		return dao.getPersonne(idPersonne);
+	public Produit getProduit(@WebParam(name="idProduit") long idProduit) {
+		return dao.getProduit(idProduit);
 	}
 
 	@WebMethod
-	public Client modifierClient(
-			@WebParam(name="idPersonne") long idPersonne,
-			@WebParam(name="nom") String nom,
-			@WebParam(name="prenom") String prenom,
-			@WebParam(name="age") int age,
-			@WebParam(name="numAdherent") int numAdherent) {
-	
-		Client c = (Client) dao.getPersonne(idPersonne);
-		c.setNom(nom);
-		c.setPrenom(prenom);
-		c.setAge(age);
-		c.setNumAdherent(numAdherent);
+	public void editPerissable(
+			@WebParam(name="idProduit") long idProduit,
+			@WebParam(name="nomProduit") String nomProduit,
+			@WebParam(name="stock") int stock,
+			@WebParam(name="prix") double prix) {
 		
-		dao.editPersonne(c);
-		return c;
-	}
-
-	@WebMethod
-	public Prestataire modifierPrestataire(
-			@WebParam(name="idPersonne") long idPersonne,
-			@WebParam(name="nom") String nom,
-			@WebParam(name="prenom") String prenom,
-			@WebParam(name="age") int age,
-			@WebParam(name="adresse") String adresse) {
-	
-		Prestataire p = (Prestataire) dao.getPersonne(idPersonne);
-		p.setNom(nom);
-		p.setPrenom(prenom);
-		p.setAge(age);
-		p.setAdresse(adresse);
+		Date dateLimiteUtilisation = new Date();
+		Perissable pe = (Perissable) dao.getProduit(idProduit);
+		pe.setNomProduit(nomProduit);
+		pe.setStock(stock);
+		pe.setPrix(prix);
+		pe.setDateLimiteUtilisation(dateLimiteUtilisation);
 		
-		dao.editPersonne(p);
-		return p;
+		dao.editProduit(pe);
 	}
 
 	@WebMethod
-	public List<Personne> getAllPersonnes() {
-		return dao.getAllPersonnes();
+	public void editNPerissable(
+			@WebParam(name="idProduit") long idProduit,
+			@WebParam(name="nomProduit") String nomProduit,
+			@WebParam(name="stock") int stock,
+			@WebParam(name="prix") double prix,
+			@WebParam(name="modeDemploi") String modeDemploi) {
+		
+		NonPerissable np = (NonPerissable) dao.getProduit(idProduit);
+		np.setNomProduit(nomProduit);
+		np.setStock(stock);
+		np.setPrix(prix);
+		np.setModeDemploi(modeDemploi);
+		
+		dao.editProduit(np);
+	}
+
+	@WebMethod
+	public List<Produit> getAllProduits() {
+		return dao.getAllProduits();
 	}
 	
 	//------------------------------------------------------------------------
 	
 	@WebMethod
-	public void ajouterVoiture(
-			@WebParam(name="marque") String marque,
-			@WebParam(name="idPersonne") long idPersonne) {
+	public void addMagasin(
+			@WebParam(name="nomMagasin") String nomMagasin,
+			@WebParam(name="codeMagasin") int codeMagasin,
+			@WebParam(name="prixLocal") double prixLocal) {
 		
-		Voiture v = new Voiture();
-		v.setMarque(marque);
-		
-		dao.addVoiture(v, idPersonne);
+		Magasin m = new Magasin();
+		dao.addMagasin(m);
 	}
 	
 	@WebMethod
-	public void supprimerVoiture(@WebParam(name="idVoiture") long idVoiture) {
-		dao.removeVoiture(idVoiture);
+	public void removeMagasin(@WebParam(name="idMagasin") long idMagasin) {
+		dao.removeMagasin(idMagasin);
 	}
 
 	@WebMethod
-	public Voiture getVoiture(@WebParam(name="idVoiture") long idVoiture) {
-		return dao.getVoiture(idVoiture);
+	public Magasin getMagasin(@WebParam(name="idMagasin") long idMagasin) {
+		return dao.getMagasin(idMagasin);
 	}
 	
 	@WebMethod
-	public Voiture modifierVoiture(
-			@WebParam(name="idVoiture") long idVoiture,
-			@WebParam(name="marque") String marque,
-			@WebParam(name="idPersonne") long idPersonne) {
+	public Magasin editMagasin(
+			@WebParam(name="idMagasin") long idMagasin,
+			@WebParam(name="nomMagasin") String nomMagasin,
+			@WebParam(name="codeMagasin") int codeMagasin,
+			@WebParam(name="prixLocal") double prixLocal) {
 	
-		Voiture v = dao.getVoiture(idVoiture);
-		Personne p = dao.getPersonne(idPersonne);
-		v.setMarque(marque);
-		v.setPersonne(p);
-		dao.editVoiture(v);
+		Magasin m = dao.getMagasin(idMagasin);
+		dao.editMagasin(m);
 		
-		return v;
+		return m;
 	}
 	
 	@WebMethod
-	public List<Voiture> getAllVoitures() {
-		return dao.getAllVoitures();
+	public List<Magasin> getAllMagasins() {
+		return dao.getAllMagasins();
 	}
 	
-	@WebMethod
-	public List<Voiture> getVoituresParPersonne(long idPersonne) {
-		return dao.getVoituresParPersonne(idPersonne);
-	}
-
 }
