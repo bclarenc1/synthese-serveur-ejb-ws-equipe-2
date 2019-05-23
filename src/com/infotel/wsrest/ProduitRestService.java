@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.jws.WebMethod;
+ 
 import javax.jws.WebParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -123,8 +123,9 @@ public class ProduitRestService {
 	}
 	
 	//------------------------------------------------------------------------
-	
-	@WebMethod
+	@GET
+	@Path("addMagasin/{nomMagasin}/{codeMagasin}/{prixLocal}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public void addMagasin(
 			@PathParam(value="nomMagasin") String nomMagasin,
 			@PathParam(value="codeMagasin") int codeMagasin,
@@ -134,17 +135,23 @@ public class ProduitRestService {
 		dao.addMagasin(m);
 	}
 	
-	@WebMethod
+	@GET
+	@Path("removeMagasin/{idMagasin}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public void removeMagasin(@WebParam(name="idMagasin") long idMagasin) {
 		dao.removeMagasin(idMagasin);
 	}
 
-	@WebMethod
+	@GET
+	@Path("getMagasin/{idMagasin}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Magasin getMagasin(@WebParam(name="idMagasin") long idMagasin) {
 		return dao.getMagasin(idMagasin);
 	}
 	
-	@WebMethod
+	@GET
+	@Path("editMagasin/{nomMagasin}/{codeMagasin}/{prixLocal}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Magasin editMagasin(
 			@PathParam(value="idMagasin") long idMagasin,
 			@PathParam(value="nomMagasin") String nomMagasin,
@@ -157,7 +164,9 @@ public class ProduitRestService {
 		return m;
 	}
 	
-	@WebMethod
+	@GET
+	@Path("listMagasins")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Magasin> getAllMagasins() {
 		return dao.getAllMagasins();
 	}
