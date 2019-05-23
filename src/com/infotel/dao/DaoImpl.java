@@ -36,7 +36,7 @@ public class DaoImpl implements IdaoRemote {
 
 	@Override
 	public Produit editProduit(Produit p) {
-		em.persist(p);
+		em.merge(p);
 		return p;
 	}
 
@@ -64,9 +64,10 @@ public class DaoImpl implements IdaoRemote {
 
 	@Override
 	public Magasin editMagasin(Magasin m) {
-		em.persist(m);
+		em.merge(m);
 		return m;
 	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Magasin> getAllMagasins() {
