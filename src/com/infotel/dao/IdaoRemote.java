@@ -22,7 +22,7 @@ public interface IdaoRemote {
 	public void removeMagasin(long idMagasin);
 	public Magasin getMagasin(long idMagasin);
 	public Magasin editMagasin(Magasin m);
-	public List<Voiture> getAllMagasins();
+	public List<Magasin> getAllMagasins();
 
 	
 }

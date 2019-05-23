@@ -22,5 +22,5 @@ public interface IdaoLocal {
 	public void removeMagasin(long idMagasin);
 	public Voiture getMagasin(long idMagasin);
 	public Voiture editMagasin(Magasin m);
-	public List<Voiture> getAllMagasins();
+	public List<Magasin> getAllMagasins();
 }
