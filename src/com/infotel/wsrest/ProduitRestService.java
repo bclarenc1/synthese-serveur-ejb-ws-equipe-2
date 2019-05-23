@@ -113,7 +113,7 @@ public class ProduitRestService {
 	} 
 	 
 	@GET
-	@Path("listPersonnes")
+	@Path("listProduits")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Produit> getAllProduits() {
 		return dao.getAllProduits();
