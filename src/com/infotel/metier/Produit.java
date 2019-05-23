@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -26,7 +28,7 @@ public abstract class Produit implements Serializable {
 	
 	
 	@ManyToOne
-	private Produit produit;
+	private Magasin magasin;
 	
 	public long getIdProduit() {
 		return idProduit;
@@ -67,21 +69,23 @@ public abstract class Produit implements Serializable {
 		this.prix = prix;
 	}
 
-
-	public Produit getProduit() {
-		return produit;
+	public Magasin getMagasin() {
+		return magasin;
 	}
 
+	public void setMagasin(Magasin magasin) {
+		this.magasin = magasin;
+	}
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", nomProduit=" + nomProduit + ", stock=" + stock + ", prix=" + prix
-				+ ", produit=" + produit + "]";
+				+ ", magasin=" + magasin + "]";
 	}
 
 
