@@ -28,19 +28,18 @@ public class ProduitRestService {
 	//	pas de getter/setter (pas besoin, methodes exposees)
 
 	@GET
-	@Path("addPerissable/{nomProduit}/{strock}/{prix}/{dlc}")
+	@Path("addPerissable/{nomProduit}/{strock}/{prix}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void addPerissable(
 			@PathParam(value="nomProduit") String nomProduit,
 			@PathParam(value="stock") int stock,
-			@PathParam(value="prix") double prix,
-			@PathParam(value="dateLimiteUtilisation") Date dateLimiteUtilisation) {
+			@PathParam(value="prix") double prix) {
 		
 		Perissable pe = new Perissable();
 		pe.setNomProduit(nomProduit);
 		pe.setStock(stock);
 		pe.setPrix(prix);
-		pe.setDateLimiteUtilisation(dateLimiteUtilisation);
+		pe.setDateLimiteUtilisation(new Date());
 		
 		dao.addProduit(pe);
 	}
@@ -82,14 +81,13 @@ public class ProduitRestService {
 	public Perissable editPerissable(
 			@PathParam(value="nomProduit") String nomProduit,
 			@PathParam(value="stock") int stock,
-			@PathParam(value="prix") double prix,
-			@PathParam(value="dateLimiteUtilisation") Date dateLimiteUtilisation) {
+			@PathParam(value="prix") double prix ) {
 		
 		Perissable pe = new Perissable();
 		pe.setNomProduit(nomProduit);
 		pe.setStock(stock);
 		pe.setPrix(prix);
-		pe.setDateLimiteUtilisation(dateLimiteUtilisation);
+		pe.setDateLimiteUtilisation(new Date());
 		
 		dao.editProduit(pe);
 		return pe;
