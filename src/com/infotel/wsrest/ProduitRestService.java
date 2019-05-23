@@ -113,7 +113,7 @@ public class ProduitRestService {
 		dao.editProduit(np);
 	return np;
 	} 
-	
+	 
 	@GET
 	@Path("listPersonnes")
 	@Produces(MediaType.APPLICATION_JSON)
