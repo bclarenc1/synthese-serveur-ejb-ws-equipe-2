@@ -22,7 +22,7 @@ public class PersonneSOAPService {
 	private DaoImpl dao;  // pas Idao, car les WS ne supportent pas les interfaces
  
 //	no getter/setter needed
-
+  
 	@WebMethod
 	public void ajouterClient(
 			@WebParam(name="nom") String nom,
