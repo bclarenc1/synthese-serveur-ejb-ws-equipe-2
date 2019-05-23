@@ -20,7 +20,7 @@ public class PersonneSOAPService {
 	
 	@EJB
 	private DaoImpl dao;  // pas Idao, car les WS ne supportent pas les interfaces
-
+ 
 //	no getter/setter needed
 
 	@WebMethod

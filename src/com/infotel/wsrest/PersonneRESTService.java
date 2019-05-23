@@ -22,7 +22,7 @@ public class PersonneRESTService {
 
 	@EJB
 	private DaoImpl dao;
-	
+	 
 	//	pas de getter/setter (pas besoin, methodes exposees)
 
 	@GET
