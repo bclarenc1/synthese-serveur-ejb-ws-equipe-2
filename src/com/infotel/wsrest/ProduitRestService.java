@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.infotel.dao.DaoImpl;
+import com.infotel.metier.Magasin;
 import com.infotel.metier.NonPerissable;
 import com.infotel.metier.Perissable;
 import com.infotel.metier.Produit;
@@ -117,6 +120,46 @@ public class ProduitRestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Produit> getAllProduits() {
 		return dao.getAllProduits();
+	}
+	
+	//------------------------------------------------------------------------
+	
+	@WebMethod
+	public void addMagasin(
+			@PathParam(value="nomMagasin") String nomMagasin,
+			@PathParam(value="codeMagasin") int codeMagasin,
+			@PathParam(value="prixLocal") double prixLocal) {
+		
+		Magasin m = new Magasin();
+		dao.addMagasin(m);
+	}
+	
+	@WebMethod
+	public void removeMagasin(@WebParam(name="idMagasin") long idMagasin) {
+		dao.removeMagasin(idMagasin);
+	}
+
+	@WebMethod
+	public Magasin getMagasin(@WebParam(name="idMagasin") long idMagasin) {
+		return dao.getMagasin(idMagasin);
+	}
+	
+	@WebMethod
+	public Magasin editMagasin(
+			@PathParam(value="idMagasin") long idMagasin,
+			@PathParam(value="nomMagasin") String nomMagasin,
+			@PathParam(value="codeMagasin") int codeMagasin,
+			@PathParam(value="prixLocal") double prixLocal) {
+	
+		Magasin m = dao.getMagasin(idMagasin);
+		dao.editMagasin(m);
+		
+		return m;
+	}
+	
+	@WebMethod
+	public List<Magasin> getAllMagasins() {
+		return dao.getAllMagasins();
 	}
 	
 	// -----------------------------------------------------------------------
