@@ -28,7 +28,7 @@ public class ProduitRestService {
 	//	pas de getter/setter (pas besoin, methodes exposees)
 
 	@GET
-	@Path("addPerissable/{nomProduit}/{strock}/{prix}")
+	@Path("addPerissable/{nomProduit}/{stock}/{prix}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void addPerissable(
 			@PathParam(value="nomProduit") String nomProduit,
@@ -45,7 +45,7 @@ public class ProduitRestService {
 	}
 	
 	@GET
-	@Path("addNonPerissable/{nomProduit}/{strock}/{prix}/{modeDemploi}")
+	@Path("addNonPerissable/{nomProduit}/{stock}/{prix}/{modeDemploi}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void addNperissable(
 			@PathParam(value="nomProduit") String nomProduit,
@@ -76,7 +76,7 @@ public class ProduitRestService {
 		return dao.getProduit(idProduit);
 	}
 	@GET
-	@Path("editPerissable/{nomProduit}/{strock}/{prix}/{dlc}")
+	@Path("editPerissable/{nomProduit}/{stock}/{prix}/{dlc}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Perissable editPerissable(
 			@PathParam(value="nomProduit") String nomProduit,
@@ -94,7 +94,7 @@ public class ProduitRestService {
 	}
 	
 	@GET
-	@Path("editNonPerissable/{nomProduit}/{strock}/{prix}/{modeDemploi}")
+	@Path("editNonPerissable/{nomProduit}/{stock}/{prix}/{modeDemploi}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public NonPerissable editNperissable(
 			@PathParam(value="nomProduit") String nomProduit,
